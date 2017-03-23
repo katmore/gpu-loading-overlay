@@ -12,14 +12,14 @@ $ bower install gpu-loading-overlay --save
 #### Bower Step 2: include script tag pointing your project's bower components path
 ```html
 <!-- change './bower_components' to point to your project's bower components path as appropriate-->
-<script src="./bower_components/gpu-loading-overlay/dist/js/gpu-loading-overlay.min.js"></script>
+<script src="./bower_components/gpu-loading-overlay/dist/loadingOverlay.min.js"></script>
 ```
 
 ### Install using CDN
 **Include script tag from rawgit CDN:**
 ```html
 <!-- thanks to Ryan Grove for operating https://rawgit.com-->
-<script src="https://cdn.rawgit.com/katmore/gpu-loading-overlay/master/dist/js/gpu-loading-overlay.min.js"></script>
+<script src="https://cdn.rawgit.com/katmore/gpu-loading-overlay/master/dist/loadingOverlay.min.js"></script>
 ```
 (See the [rawgit CDN FAQ](https://github.com/rgrove/rawgit/wiki/Frequently-Asked-Questions) for more information)
 
