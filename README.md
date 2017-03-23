@@ -92,7 +92,7 @@ setTimeout(function() {
 var spinHandle_secondProcess = loadingOverlay().activate();
 setTimeout(function() {
    loadingOverlay().cancel(spinHandle_secondProcess);
-},5000);
+},2000);
 ```
 
 ## Legal
