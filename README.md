@@ -40,6 +40,7 @@ $ bower install gpu-loading-overlay --save
       
 
   * {void} loadingOverlay().**cancel**({string} spinHandle)
+  
        Cancel the specified spinner.
      
      **Parameters:**
