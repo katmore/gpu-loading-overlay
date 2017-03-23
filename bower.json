@@ -1,6 +1,6 @@
 {
-  "name": "loading-overlay",
-  "homepage": "https://github.com/katmore/loadingOverlay",
+  "name": "gpu-loading-overlay",
+  "homepage": "https://github.com/katmore/gpu-loading-overlay",
   "description": "A pure css/gpu 'loading spinner' overlay bundled into a javascript module to conveniently control state",
   "authors": [
     "Doug Bird"
