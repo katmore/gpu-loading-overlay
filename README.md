@@ -67,7 +67,7 @@ setTimeout(function() {
 
 #### Example 2) Why we use 'handles':
 
-**loadingOverlay** provides a 'spin handle' each time the loading overlay is activate so that asyncronous processes
+**loadingOverlay** provides a 'spin handle' each time the loading overlay is activated so that asyncronous processes
 will not 'clobber' a subsequently started loading overlay.
 
 Meaning, if the script fires off multiple processes subsequently with corresponding
