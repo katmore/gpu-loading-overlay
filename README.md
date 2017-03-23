@@ -32,7 +32,7 @@ $ bower install gpu-loading-overlay --save
      **Parameters:**
 
       * {object} **config**
-       configuration object
+       Optional configuration object
       
      **Returns:**
 
@@ -46,7 +46,7 @@ $ bower install gpu-loading-overlay --save
      **Parameters:**
 
       * {string} **spinHandle**
-       spin handle
+       Required spin handle
       
 
 ### Examples
