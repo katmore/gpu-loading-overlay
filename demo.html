@@ -8,11 +8,34 @@
     <!-- specify utf-8 encoding -->
     <meta charset="utf-8">
 
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <style>
+        .clock-button {
+            background-color: blueviolet;
+            padding: 0.5em;
+            color: white;
+        }
+        
+        .clock-placement {
+            position: fixed;
+            /* Fixed/sticky position */
+            top: 20px;
+            /* Place the button at the top of the page */
+            right: 30px;
+            /* Place the button 30px from the right */
+            z-index: 99;
+            /* Make sure it does not overlap */
+        }
+    </style>
 </head>
 
 <body>
     <h1>gpu-loading-overlay demo</h1>
-
+    <div class="clock-button clock-placement" aria-hidden="true"><i class="fa fa-clock-o" aria-hidden="true">&nbsp;</i>
+        <span id="clock"></span>
+    </div>
     <hr>
     <div id="show-3-seconds">
         <h3>Fixed time example</h3>
@@ -43,6 +66,14 @@
         <p>The 1st invokation's spinHandle is cancelled after 3 seconds, the 2nd invokation's spinHandle is cancelled after 5 seconds. </p>
         <p>Thus, the overlay should stay on for 5 seconds total.</p>
         </small>
+        <p>
+            <div for="race-1-spin-handle-1"><label><small>spinHandle1 (3 seconds)</small></label></div>
+            <input readonly type="text" id="race-1-spin-handle-1" placeholder="spinHandle1" size="40">
+        </p>
+        <p>
+            <div for="race-1-spin-handle-2"><label><small>spinHandle2 (5 seconds)</small></label></div>
+            <input readonly type="text" id="race-1-spin-handle-2" placeholder="spinHandle2" size="40">
+        </p>
     </div>
     <hr>
     <div id="race-2">
@@ -54,12 +85,48 @@
             <p>Invokes "activate()" function 2 times successively, tracking each "spinHandle" respectively. </p>
             <p>The 1st invokation's spinHandle is cancelled after 5 seconds, the 2nd invokation's spinHandle is cancelled after 3 seconds. </p>
             <p>Thus, the overlay should stay on for 5 seconds total.</p>
-            </small>
+        </small>
+        <p>
+            <div for="race-2-spin-handle-1"><label><small>spinHandle1 (5 seconds)</small></label></div>
+            <input readonly type="text" id="race-2-spin-handle-1" placeholder="spinHandle1" size="40">
+        </p>
+        <p>
+            <div for="race-2-spin-handle-2"><label><small>spinHandle2 (3 seconds)</small></label></div>
+            <input readonly type="text" id="race-2-spin-handle-2" placeholder="spinHandle2" size="40">
+        </p>
     </div>
     <hr>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
     <script src="src/loadingOverlay.js"></script>
+    <script>
+        /*
+         * Display a clock at the top of the page
+         */
+        (function() {
+
+            function checkTime(i) {
+                if (i < 10) {
+                    i = "0" + i
+                }; // add zero in front of numbers < 10
+                return i;
+            }
+
+            function displayTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                m = checkTime(m);
+                s = checkTime(s);
+                document.getElementById('clock').innerHTML =
+                    h + ":" + m + ":" + s;
+                var t = setTimeout(displayTime, 500);
+            }
+
+            displayTime();
+        })();
+    </script>
 
     <script data-example="show-3-seconds">
         (function() {
@@ -100,6 +167,8 @@
                 setTimeout(function() {
                     loadingOverlay().cancel(spinHandle2);
                 }, 5000);
+                document.getElementById('race-1-spin-handle-1').value = spinHandle1;
+                document.getElementById('race-1-spin-handle-2').value = spinHandle2;
                 return false;
             };
         })();
@@ -117,6 +186,8 @@
                 setTimeout(function() {
                     loadingOverlay().cancel(spinHandle2);
                 }, 3000);
+                document.getElementById('race-2-spin-handle-1').value = spinHandle1;
+                document.getElementById('race-2-spin-handle-2').value = spinHandle2;
                 return false;
             };
         })();
