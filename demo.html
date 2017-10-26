@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Demo - gpu-loading-overlay</title>
+
+    <!-- specify utf-8 encoding -->
+    <meta charset="utf-8">
+
+</head>
+
+<body>
+    <h1>gpu-loading-overlay demo</h1>
+
+    <hr>
+    <div id="show-3-seconds">
+        <h3>Fixed time example</h3>
+        <p>
+            <button id="show-3-seconds-btn">Show for 3 Seconds</button>
+        </p>
+    </div>
+    <hr>
+    <div id="show-n-seconds">
+        <h3>Configurable time example</h3>
+        <form id="show-n-seconds-form">
+            <p>
+                <input required type="number" id="show-n-seconds-number" placeholder="number of seconds" min="1">
+            </p>
+            <p>
+                <button type="submit">Show for N Seconds</button>
+            </p>
+        </form>
+    </div>
+    <hr>
+    <div id="race-1">
+        <h3>Overlapping / Race example #1</h3>
+        <p>
+            <button id="race-1-btn">"loadingOverlay().activate()" twice: 3 sec &amp; 5 sec</button>
+        </p>
+        <small>
+        <p>Invokes "activate()" function 2 times successively, tracking each "spinHandle" respectively. </p>
+        <p>The 1st invokation's spinHandle is cancelled after 3 seconds, the 2nd invokation's spinHandle is cancelled after 5 seconds. </p>
+        <p>Thus, the overlay should stay on for 5 seconds total.</p>
+        </small>
+    </div>
+    <hr>
+    <div id="race-2">
+        <h3>Overlapping / Race example #2</h3>
+        <p>
+            <button id="race-2-btn">"loadingOverlay().activate()" twice: 5 sec &amp; 3 sec</button>
+        </p>
+        <small>
+            <p>Invokes "activate()" function 2 times successively, tracking each "spinHandle" respectively. </p>
+            <p>The 1st invokation's spinHandle is cancelled after 5 seconds, the 2nd invokation's spinHandle is cancelled after 3 seconds. </p>
+            <p>Thus, the overlay should stay on for 5 seconds total.</p>
+            </small>
+    </div>
+    <hr>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+    <script src="src/loadingOverlay.js"></script>
+
+    <script data-example="show-3-seconds">
+        (function() {
+            var show3SecondsBtn = document.getElementById('show-3-seconds-btn');
+            show3SecondsBtn.onclick = function() {
+                var spinHandle = loadingOverlay().activate();
+                setTimeout(function() {
+                    loadingOverlay().cancel(spinHandle);
+                }, 3000);
+                return false;
+            };
+        })();
+    </script>
+
+    <script data-example="show-n-seconds">
+        (function() {
+            var showNSecondsForm = document.getElementById('show-n-seconds-form');
+            showNSecondsForm.onsubmit = function() {
+                var msTimeout = parseInt(document.getElementById('show-n-seconds-number').value) * 1000;
+                var spinHandle = loadingOverlay().activate();
+                setTimeout(function() {
+                    loadingOverlay().cancel(spinHandle);
+                }, msTimeout);
+                return false;
+            };
+        })();
+    </script>
+
+    <script data-example="race-1">
+        (function() {
+            var race1Btn = document.getElementById('race-1-btn');
+            race1Btn.onclick = function() {
+                var spinHandle1 = loadingOverlay().activate();
+                var spinHandle2 = loadingOverlay().activate();
+                setTimeout(function() {
+                    loadingOverlay().cancel(spinHandle1);
+                }, 3000);
+                setTimeout(function() {
+                    loadingOverlay().cancel(spinHandle2);
+                }, 5000);
+                return false;
+            };
+        })();
+    </script>
+
+    <script data-example="race-2">
+        (function() {
+            var race2Btn = document.getElementById('race-2-btn');
+            race2Btn.onclick = function() {
+                var spinHandle1 = loadingOverlay().activate();
+                var spinHandle2 = loadingOverlay().activate();
+                setTimeout(function() {
+                    loadingOverlay().cancel(spinHandle1);
+                }, 5000);
+                setTimeout(function() {
+                    loadingOverlay().cancel(spinHandle2);
+                }, 3000);
+                return false;
+            };
+        })();
+    </script>
+</body>
+
+</html>
