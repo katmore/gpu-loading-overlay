@@ -97,36 +97,33 @@
     </div>
     <hr>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
-    <script src="src/loadingOverlay.js"></script>
+    <!-- display time for reference -->
     <script>
         /*
          * Display a clock at the top of the page
          */
         (function() {
 
-            function checkTime(i) {
-                if (i < 10) {
-                    i = "0" + i
-                }; // add zero in front of numbers < 10
-                return i;
+            var checkTime = function() {
+                var now = new Date();
+                var timeString = String(now.getHours()).padStart(2, "0") + ":" +
+                    String(now.getMinutes()).padStart(2, "0") + ":" +
+                    String(now.getSeconds()).padStart(2, "0");
+                if (document.getElementById('clock').innerHTML != timeString) {
+                    document.getElementById('clock').innerHTML = timeString;
+                }
+                setTimeout(checkTime, 100);
             }
 
-            function displayTime() {
-                var today = new Date();
-                var h = today.getHours();
-                var m = today.getMinutes();
-                var s = today.getSeconds();
-                m = checkTime(m);
-                s = checkTime(s);
-                document.getElementById('clock').innerHTML =
-                    h + ":" + m + ":" + s;
-                var t = setTimeout(displayTime, 500);
-            }
-
-            displayTime();
+            checkTime();
         })();
     </script>
+
+    <!-- jQuery: Dependency of loadingOverlay.js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f" crossorigin="anonymous"></script>
+
+    <!-- loadingOverlay module -->
+    <script src="src/loadingOverlay.js"></script>
 
     <script data-example="show-3-seconds">
         (function() {
