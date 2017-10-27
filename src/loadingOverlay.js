@@ -139,7 +139,7 @@ var loadingOverlay;
             };
             var spinMin = param.spinMinMS;
             var cancelSpinner = function cancelSpinnerCallee(spinHandle, cancelledCallback, cancelUUID) {
-                console.log("cancel: " + spinHandle);
+                //console.log("cancel: " + spinHandle);
                 var cUUID;
                 if (typeof cancelUUID === 'undefined') {
                     cUUID = lo.uuid();
