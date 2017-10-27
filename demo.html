@@ -8,9 +8,6 @@
     <!-- specify utf-8 encoding -->
     <meta charset="utf-8">
 
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
     <style>
         .clock-button {
             background-color: blueviolet;
@@ -33,7 +30,12 @@
 
 <body>
     <h1>gpu-loading-overlay demo</h1>
-    <div class="clock-button clock-placement" aria-hidden="true"><i class="fa fa-clock-o" aria-hidden="true">&nbsp;</i>
+    <div class="clock-button clock-placement" aria-hidden="true">
+
+        <svg width="1em" height="1em" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+                
+                <g><path fill="#FFFFFF" d="M500,986.9c-270.6,0-490-218-490-486.9C10,231.1,229.4,13.1,500,13.1c270.6,0,490,218,490,486.9C990,768.9,770.6,986.9,500,986.9z M500,104.4c-219.9,0-398.1,177.1-398.1,395.6c0,218.5,178.2,395.6,398.1,395.6S898.1,718.5,898.1,500C898.1,281.5,719.8,104.4,500,104.4z M699,545.7h-91.9h-61.2h-46l0,0c-25.4,0-45.9-20.4-45.9-45.7V226.1c0-25.2,20.5-45.7,45.9-45.7c25.4,0,46,20.4,46,45.7v228.3h61.2H699c25.4,0,45.9,20.4,45.9,45.6C745,525.2,724.4,545.7,699,545.7z"/></g>
+                </svg> &nbsp;
         <span id="clock"></span>
     </div>
     <hr>
@@ -95,6 +97,12 @@
             <input readonly type="text" id="race-2-spin-handle-2" placeholder="spinHandle2" size="40">
         </p>
     </div>
+    <hr>
+    <small>
+    <p>&copy; 2014-2017 Doug Bird - All Rights Reserved.</p>
+    <p>This demo and the gpu-loading-overlay module are distributed under the terms of the MIT license.</p>
+    <p>Clock icon &copy; onlinewebfonts.com and distributed under terms of the Creative Commons 3.0 License.</p>
+    </small>
     <hr>
 
     <!-- display time for reference -->
