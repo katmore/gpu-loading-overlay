@@ -49,7 +49,6 @@ $ bower install gpu-loading-overlay --save
       * {string} **spinHandle**
       
         *Required* spin handle
-      
 
 ### Examples
 
@@ -95,6 +94,8 @@ setTimeout(function() {
 },2000);
 ```
 
+### Screenshots
+![Demo Screenshot](https://raw.githubusercontent.com/katmore/gpu-loading-overlay/master/demo-screenshot.jpg)
 ## Legal
 loadingOverlay is distributed under the terms of the MIT license or the GPLv3 license.
 
