@@ -43,6 +43,33 @@ var loadingOverlay;
 
         return (crc ^ (-1)) >>> 0;
     };
+
+    var showTarget = function(selector) {
+
+        var elem = document.querySelectorAll(selector);
+        for (var i = 0; i < elem.length; i++) {
+            elem[i].style.display = "block";
+        }
+
+
+    };
+
+    var hideTarget = function(selector) {
+
+        var elem = document.querySelectorAll(selector);
+        for (var i = 0; i < elem.length; i++) {
+            elem[i].style.display = "none";
+        }
+
+    };
+
+    var appendHtmlToTarget = function(selector, html) {
+        var elem = document.querySelectorAll(selector);
+        for (var i = 0; i < elem.length; i++) {
+            elem[i].insertAdjacentHTML('afterend', html);
+        }
+    };
+
     var lo = (function() {
 
         var classNS = 'lo';
@@ -133,7 +160,7 @@ var loadingOverlay;
                         return false;
                     }
                     spinnerStart = Date.now();
-                    $(target).show();
+                    showTarget(target);
                 }, param.spinWaitMS);
                 return mySpinHandle;
             };
@@ -195,7 +222,7 @@ var loadingOverlay;
                                 return;
                             }
                         }
-                        $(target).hide();
+                        hideTarget(target);
                     }
                 }, 10);
             };
@@ -206,11 +233,16 @@ var loadingOverlay;
                 activate: activateSpinner,
             };
 
-            if ($(target).length && $(target).hasClass(param['class'])) {
-                return obj;
+            var targetElem = document.querySelectorAll(target);
+            if (targetElem) {
+                targetElem.forEach(function(elem) {
+                    if (elem.classList.contains(param['class'])) {
+                        return obj;
+                    }
+                });
             }
 
-            $(param.target).append(heredoc(function() {
+            appendHtmlToTarget(param.target, heredoc(function() {
                 /*
                                <style>
                             .%wrapClass% {
@@ -332,9 +364,8 @@ var loadingOverlay;
 
                             */
             }).replace(/%wrapClass%/g, param['wrapClass']).replace(/%spinClass%/g, param['spinClass']));
-            //console.log('param...');
-            //console.debug(param);
-            $(param.target).append(heredoc(function() {
+
+            appendHtmlToTarget(param.target, heredoc(function() {
                     /*
                                    <div class="%wrapClass%" style="display:none; " id="%spinID%"></div>
 
