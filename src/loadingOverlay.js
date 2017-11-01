@@ -66,7 +66,7 @@ var loadingOverlay;
     var appendHtmlToTarget = function(selector, html) {
         var elem = document.querySelectorAll(selector);
         for (var i = 0; i < elem.length; i++) {
-            elem[i].insertAdjacentHTML('afterend', html);
+            elem[i].insertAdjacentHTML('beforeend', html);
         }
     };
 
