@@ -248,9 +248,6 @@ var loadingOverlay;
                             .%wrapClass% {
                                position: fixed;
                                z-index: 999999;
-                               height: 2em;
-                               width: 2em;
-                               overflow: show;
                                margin: auto;
                                top: 0;
                                left: 0;
@@ -274,7 +271,7 @@ var loadingOverlay;
                                font: 0/0 a;
                                color: transparent;
                                text-shadow: none;
-                               background-color: transparent;
+                               background-color: rgba(255, 255, 255, 0.5803921568627451);
                                border: 0;
                             }
 
@@ -284,7 +281,11 @@ var loadingOverlay;
                                font-size: 10px;
                                width: 1em;
                                height: 1em;
+                               position:fixed;
+                               top:50%;
+                               left:50%;
                                margin-top: -0.5em;
+                               margin-left: -0.5em;
                                -webkit-animation: %spinClass% 1500ms infinite linear;
                                -moz-animation: %spinClass% 1500ms infinite linear;
                                -ms-animation: %spinClass% 1500ms infinite linear;
