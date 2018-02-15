@@ -255,7 +255,7 @@ var loadingOverlay;
                   var spinWrapElem = document.querySelectorAll('#'+param['spinID']);
                    for (var i = 0; i < spinWrapElem.length; i++) {
                       spinWrapElem[i].remove();
-                      console.log('removed');
+                      //console.log('removed');
                    }                  
                 },
             };
