@@ -116,7 +116,7 @@ var loadingOverlay;
     })();
 
 
-    loadingOverlay = function(config) {
+    var invokeLoadingOverlay = function(config) {
         var param = lo.config2param(config);
         
         return lo.cache(param, function() {
@@ -399,5 +399,17 @@ var loadingOverlay;
 
         });
     };
+    
+    //loadingOverlay = invokeLoadingOverlay;
+   function functionize( obj , func ) { 
+      out = func; 
+      for( i in obj ){ out[i] = obj[i]; } ; 
+      return out; 
+   }
+   
+
+    loadingOverlay = invokeLoadingOverlay();
+    
+    loadingOverlay = functionize( loadingOverlay , function(param){ return invokeLoadingOverlay(param); } );
 
 })();
