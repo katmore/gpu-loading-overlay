@@ -69,6 +69,7 @@ var loadingOverlay;
             elem[i].insertAdjacentHTML('beforeend', html);
         }
     };
+    
 
     var lo = (function() {
 
@@ -117,6 +118,7 @@ var loadingOverlay;
 
     loadingOverlay = function(config) {
         var param = lo.config2param(config);
+        
         return lo.cache(param, function() {
             var target = '#' + param['spinID'];
             ////console.log('target...');
@@ -141,6 +143,27 @@ var loadingOverlay;
             var cancelled_hash = {};
 
             var activateSpinner = function() {
+               var spinWrap = document.getElementById(param['spinID']);
+               if (!spinWrap) {
+                  console.log('cancelled_status_hash...');
+                  console.log(cancelled_status_hash);
+                  for (var csh in cancelled_status_hash) {
+                     if (!cancelled_status_hash[csh]) {
+                        cancelled_status_hash[csh] = true;
+                     }
+                  }
+                  appendHtmlToTarget(param.target, heredoc(function() {
+                          /*
+                                         <div class="%wrapClass%" style="display:none; " id="%spinID%"></div>
+
+                                      */
+                      })
+                      .replace(/%wrapClass%/g, param['wrapClass'])
+                      .replace(/%spinID%/g, param['spinID'])
+                  );
+               }
+               console.log('spinWrap...');
+               console.log(spinWrap);
                 var mySpinHandle = uuid();
                 lastSpinHandle = mySpinHandle;
                 cancelSpinnerOn = false;
@@ -366,15 +389,7 @@ var loadingOverlay;
                             */
             }).replace(/%wrapClass%/g, param['wrapClass']).replace(/%spinClass%/g, param['spinClass']));
 
-            appendHtmlToTarget(param.target, heredoc(function() {
-                    /*
-                                   <div class="%wrapClass%" style="display:none; " id="%spinID%"></div>
 
-                                */
-                })
-                .replace(/%wrapClass%/g, param['wrapClass'])
-                .replace(/%spinID%/g, param['spinID'])
-            );
 
             return obj;
 
