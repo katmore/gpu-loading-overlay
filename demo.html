@@ -61,7 +61,7 @@
     <div id="race-1">
         <h3>Overlapping / Race example #1</h3>
         <p>
-            <button id="race-1-btn">"loadingOverlay().activate()" twice: 3 sec &amp; 5 sec</button>
+            <button id="race-1-btn">"loadingOverlay.activate()" twice: 3 sec &amp; 5 sec</button>
         </p>
         <small>
         <p>Invokes "activate()" function 2 times successively, tracking each "spinHandle" respectively. </p>
@@ -81,7 +81,7 @@
     <div id="race-2">
         <h3>Overlapping / Race example #2</h3>
         <p>
-            <button id="race-2-btn">"loadingOverlay().activate()" twice: 5 sec &amp; 3 sec</button>
+            <button id="race-2-btn">"loadingOverlay.activate()" twice: 5 sec &amp; 3 sec</button>
         </p>
         <small>
             <p>Invokes "activate()" function 2 times successively, tracking each "spinHandle" respectively. </p>
@@ -137,9 +137,9 @@
         (function() {
             var show3SecondsBtn = document.getElementById('show-3-seconds-btn');
             show3SecondsBtn.onclick = function() {
-                var spinHandle = loadingOverlay().activate();
+                var spinHandle = loadingOverlay.activate();
                 setTimeout(function() {
-                    loadingOverlay().cancel(spinHandle);
+                    loadingOverlay.cancel(spinHandle);
                 }, 3000);
                 return false;
             };
@@ -151,9 +151,9 @@
             var showNSecondsForm = document.getElementById('show-n-seconds-form');
             showNSecondsForm.onsubmit = function() {
                 var msTimeout = parseInt(document.getElementById('show-n-seconds-number').value) * 1000;
-                var spinHandle = loadingOverlay().activate();
+                var spinHandle = loadingOverlay.activate();
                 setTimeout(function() {
-                    loadingOverlay().cancel(spinHandle);
+                    loadingOverlay.cancel(spinHandle);
                 }, msTimeout);
                 return false;
             };
@@ -164,13 +164,13 @@
         (function() {
             var race1Btn = document.getElementById('race-1-btn');
             race1Btn.onclick = function() {
-                var spinHandle1 = loadingOverlay().activate();
-                var spinHandle2 = loadingOverlay().activate();
+                var spinHandle1 = loadingOverlay.activate();
+                var spinHandle2 = loadingOverlay.activate();
                 setTimeout(function() {
-                    loadingOverlay().cancel(spinHandle1);
+                    loadingOverlay.cancel(spinHandle1);
                 }, 3000);
                 setTimeout(function() {
-                    loadingOverlay().cancel(spinHandle2);
+                    loadingOverlay.cancel(spinHandle2);
                 }, 5000);
                 document.getElementById('race-1-spin-handle-1').value = spinHandle1;
                 document.getElementById('race-1-spin-handle-2').value = spinHandle2;
@@ -183,13 +183,13 @@
         (function() {
             var race2Btn = document.getElementById('race-2-btn');
             race2Btn.onclick = function() {
-                var spinHandle1 = loadingOverlay().activate();
-                var spinHandle2 = loadingOverlay().activate();
+                var spinHandle1 = loadingOverlay.activate();
+                var spinHandle2 = loadingOverlay.activate();
                 setTimeout(function() {
-                    loadingOverlay().cancel(spinHandle1);
+                    loadingOverlay.cancel(spinHandle1);
                 }, 5000);
                 setTimeout(function() {
-                    loadingOverlay().cancel(spinHandle2);
+                    loadingOverlay.cancel(spinHandle2);
                 }, 3000);
                 document.getElementById('race-2-spin-handle-1').value = spinHandle1;
                 document.getElementById('race-2-spin-handle-2').value = spinHandle2;
