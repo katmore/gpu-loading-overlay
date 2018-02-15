@@ -403,7 +403,7 @@ var loadingOverlay;
     //loadingOverlay = invokeLoadingOverlay;
    function functionize( obj , func ) { 
       out = func; 
-      for( i in obj ){ out[i] = obj[i]; } ; 
+      for( var i in obj ){ out[i] = obj[i]; } ; 
       return out; 
    }
    
