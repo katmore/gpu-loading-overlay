@@ -93,6 +93,38 @@ setTimeout(function() {
 },2000);
 ```
 
+#### Example 3) Cancel all handles:
+
+There may come a time when all active loading spinners should be cancelled regardless of if they have been individually cancelled.
+
+An example use-case would be upon an unhandled exception:
+
+```javascript
+//
+// prepare an event listener that will "cancel all spinners" upon encountering any unhandled javascript error
+//
+window.addEventListener('error', function (evt) {
+   loadingOverlay.cancelAll();
+});
+
+//
+// activate a spinner
+//
+var spinHandle = loadingOverlay.activate();
+
+//
+// do something that takes 5 seconds...
+//
+setTimeout(function() {
+   loadingOverlay.cancel(spinHandle_secondProcess);
+},5000);
+
+//
+// a wild error appears
+//
+throw new Error('Some error.');
+```
+
 ### Screenshots
 ![Demo Screenshot](https://raw.githubusercontent.com/katmore/gpu-loading-overlay/master/demo-screenshot.jpg)
 ## Legal
