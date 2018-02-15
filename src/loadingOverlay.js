@@ -145,8 +145,6 @@ var loadingOverlay;
             var activateSpinner = function() {
                var spinWrap = document.getElementById(param['spinID']);
                if (!spinWrap) {
-                  console.log('cancelled_status_hash...');
-                  console.log(cancelled_status_hash);
                   for (var csh in cancelled_status_hash) {
                      if (!cancelled_status_hash[csh]) {
                         cancelled_status_hash[csh] = true;
@@ -162,8 +160,6 @@ var loadingOverlay;
                       .replace(/%spinID%/g, param['spinID'])
                   );
                }
-               console.log('spinWrap...');
-               console.log(spinWrap);
                 var mySpinHandle = uuid();
                 lastSpinHandle = mySpinHandle;
                 cancelSpinnerOn = false;
@@ -249,11 +245,19 @@ var loadingOverlay;
                     }
                 }, 10);
             };
+            
             //typeof cancelSpinnerCallee === 'undefined';
             delete cancelSpinnerCallee;
             var obj = {
                 cancel: cancelSpinner,
                 activate: activateSpinner,
+                cancelAll : function() {
+                  var spinWrapElem = document.querySelectorAll('#'+param['spinID']);
+                   for (var i = 0; i < spinWrapElem.length; i++) {
+                      spinWrapElem[i].remove();
+                      console.log('removed');
+                   }                  
+                },
             };
 
             var targetElem = document.querySelectorAll(target);
