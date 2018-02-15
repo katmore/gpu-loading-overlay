@@ -25,22 +25,16 @@ $ bower install gpu-loading-overlay --save
 
 ## Usage
 ### Methods
-  * {string} loadingOverlay({object} config).**activate**() 
+  * {string} loadingOverlay.**activate**() 
   
      Active the spinner overlay.
-     
-     **Parameters:**
-
-      * {object} **config**
-      
-        *Optional* configuration object
       
      **Returns:**
 
       * {string} spin handle
       
 
-  * {void} loadingOverlay().**cancel**({string} spinHandle)
+  * {void} loadingOverlay.**cancel**({string} spinHandle)
   
        Cancel the specified spinner.
      
@@ -49,18 +43,23 @@ $ bower install gpu-loading-overlay --save
       * {string} **spinHandle**
       
         *Required* spin handle
+        
+  * {void} loadingOverlay.**cancelAll**({string} spinHandle)
+  
+       Cancels all active spinners.
+     
 
 ### Examples
 
 #### Example 1) Simple usage:
 
 ```javascript
-var spinHandle = loadingOverlay().activate();
+var spinHandle = loadingOverlay.activate();
 //
 // do something that takes 5 seconds...
 //
 setTimeout(function() {
-   loadingOverlay().cancel(spinHandle);
+   loadingOverlay.cancel(spinHandle);
 },5000);
 ```
 
@@ -80,9 +79,9 @@ process can run the "cancel" method without concern of the first process's state
 //
 // do something that takes 5 seconds...
 //
-var spinHandle_firstProcess = loadingOverlay().activate();
+var spinHandle_firstProcess = loadingOverlay.activate();
 setTimeout(function() {
-   loadingOverlay().cancel(spinHandle_firstProcess);
+   loadingOverlay.cancel(spinHandle_firstProcess);
 },5000);
 
 //
@@ -90,7 +89,7 @@ setTimeout(function() {
 //
 var spinHandle_secondProcess = loadingOverlay().activate();
 setTimeout(function() {
-   loadingOverlay().cancel(spinHandle_secondProcess);
+   loadingOverlay.cancel(spinHandle_secondProcess);
 },2000);
 ```
 
@@ -99,5 +98,5 @@ setTimeout(function() {
 ## Legal
 loadingOverlay is distributed under the terms of the MIT license or the GPLv3 license.
 
-Copyright (c) 2006-2017 Doug Bird.
+Copyright (c) 2006-2018 Doug Bird.
 All rights reserved.
